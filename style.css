@@ -1,0 +1,138 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background: #282a3a;
+}
+
+.card {
+    font-family: Poppins;
+    width: 340px;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+.card-image img {
+    width: 100%;
+
+    object-fit: cover;
+}
+
+.profile-image img {
+    z-index: 1;
+    width: 120px;
+    height: 120px;
+    position: relative;
+    margin-top: -75px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    -ms-border-radius: 100px;
+    -o-border-radius: 100px;
+    border: 10px solid #fff;
+    transition-duration: 0.4s;
+    transition-property: transform;
+}
+
+.profile-image img:hover {
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+}
+
+.card-content h3 {
+    font-size: 25px;
+    text-align: center;
+    margin: 0;
+}
+
+.card-content p {
+    font-size: 16px;
+    text-align: justify;
+    padding: 0 20px 5px 20px;
+}
+
+.icons {
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 30px;
+    display: flex;
+    margin: auto;
+    flex: 1;
+    justify-content: space-around;
+}
+
+.icons a {
+    margin-left: 10px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #171717;
+    padding: 10px 14px;
+    border-radius: 10px;
+    transition-duration: 0.4s;
+    transition-property: transform;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+        rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    background-color: #fff;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+#yt:hover {
+    color: red;
+    transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    -moz-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    -o-transform: scale(1.5);
+}
+#fb:hover {
+    color: blue;
+    transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    -moz-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    -o-transform: scale(1.5);
+}
+#wa:hover {
+    color: green;
+    transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    -moz-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    -o-transform: scale(1.5);
+}
+#tw:hover {
+    color: cyan;
+    transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    -moz-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    -o-transform: scale(1.5);
+}
+#ig:hover {
+    color: purple;
+    transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    -moz-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    -o-transform: scale(1.5);
+}
