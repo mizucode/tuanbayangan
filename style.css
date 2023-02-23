@@ -216,6 +216,7 @@ body {
 }
 
 .music-player {
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
