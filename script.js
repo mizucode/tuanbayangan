@@ -77,7 +77,7 @@ async function displayRandomQuote() {
     }
     setTimeout(() => {
         canClick = true;
-    }, 5000);
+    }, 50);
 }
 
 quoteElem.addEventListener("click", displayRandomQuote);
