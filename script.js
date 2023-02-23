@@ -9,13 +9,14 @@ let lastQuoteIndex;
 const apiUrl = "https://facts-by-api-ninjas.p.rapidapi.com/v1/facts";
 const apiHeaders = {
     "X-RapidAPI-Key": "a88865da07mshcfff269fba5f402p1770e5jsne9e062881b07",
-    "X-RapidAPI-Host": "facts-by-api-ninjas.p.rapidapi.com"
+    "X-RapidAPI-Host": "facts-by-api-ninjas.p.rapidapi.com",
 };
 
 function toggleAccordion(accordionHeader) {
     accordionHeader.classList.toggle("active");
     const accordionContent = accordionHeader.nextElementSibling;
-    accordionContent.style.display = accordionContent.style.display === "block" ? "none" : "block";
+    accordionContent.style.display =
+        accordionContent.style.display === "block" ? "none" : "block";
 }
 
 for (const accordionHeader of accordionHeaders) {
@@ -48,7 +49,9 @@ async function getRandomQuote() {
     try {
         const response = await Promise.race([
             fetch(apiUrl, { headers: apiHeaders }),
-            new Promise((_, reject) => setTimeout(() => reject(new Error("Network timeout")), 5000))
+            new Promise((_, reject) =>
+                setTimeout(() => reject(new Error("Network timeout")), 5000)
+            ),
         ]);
         const data = await response.json();
         if (Array.isArray(data) && data.length > 0 && data[0].fact) {
@@ -77,7 +80,7 @@ async function displayRandomQuote() {
     }
     setTimeout(() => {
         canClick = true;
-    }, 5000);
+    }, 50);
 }
 
 quoteElem.addEventListener("click", displayRandomQuote);

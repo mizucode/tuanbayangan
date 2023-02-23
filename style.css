@@ -198,20 +198,21 @@ body {
     -o-transform: scale(1.2);
 }
 
-/* adsdad */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 480px) {
     .card {
         width: 90%;
         justify-content: space-around;
     }
     .icons {
-        margin-top: 10px;
         justify-content: center;
-        width: 80%;
+        width: 60%;
         flex-wrap: wrap;
     }
     .story {
         width: 90%;
+    }
+    .icons a {
+        margin-bottom: 10px;
     }
 }
 
