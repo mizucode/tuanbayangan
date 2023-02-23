@@ -6,11 +6,11 @@ const stopBtn = musicPlayer.querySelector(".stop-btn");
 const volumeSlider = musicPlayer.querySelector(".volume-slider");
 const quoteElem = document.getElementById("quote");
 let lastQuoteIndex;
-const quotes = [
-    "Hard work betrays none, but dreams betray many. - Hachiman Hikigaya,",
-    "A person's past can't be changed. But their future is still up for grabs. - Sinon",
-    "People's true abilities are hidden. You have to see through their outer shell to find them. - Ayanokouji",
-];
+const apiUrl = "https://facts-by-api-ninjas.p.rapidapi.com/v1/facts";
+const apiHeaders = {
+    "X-RapidAPI-Key": "a88865da07mshcfff269fba5f402p1770e5jsne9e062881b07",
+    "X-RapidAPI-Host": "facts-by-api-ninjas.p.rapidapi.com"
+};
 
 function toggleAccordion(accordionHeader) {
     accordionHeader.classList.toggle("active");
@@ -44,17 +44,40 @@ volumeSlider.addEventListener("input", () => {
     audio.volume = volumeSlider.value / 100;
 });
 
-function getRandomQuote() {
-    let randomIndex;
-    do {
-        randomIndex = Math.floor(Math.random() * quotes.length);
-    } while (randomIndex === lastQuoteIndex);
-    lastQuoteIndex = randomIndex;
-    return quotes[randomIndex];
+async function getRandomQuote() {
+    try {
+        const response = await Promise.race([
+            fetch(apiUrl, { headers: apiHeaders }),
+            new Promise((_, reject) => setTimeout(() => reject(new Error("Network timeout")), 5000))
+        ]);
+        const data = await response.json();
+        if (Array.isArray(data) && data.length > 0 && data[0].fact) {
+            return data[0].fact;
+        } else {
+            throw new Error("Invalid response from API");
+        }
+    } catch (error) {
+        console.error(error);
+        throw new Error("Failed to fetch random quote");
+    }
 }
 
-function displayRandomQuote() {
-    quoteElem.textContent = getRandomQuote();
+let canClick = true;
+async function displayRandomQuote() {
+    if (!canClick) {
+        return;
+    }
+    canClick = false;
+    try {
+        const randomQuote = await getRandomQuote();
+        console.log(randomQuote);
+        quoteElem.textContent = randomQuote;
+    } catch (error) {
+        console.error(error);
+    }
+    setTimeout(() => {
+        canClick = true;
+    }, 5000);
 }
 
-displayRandomQuote();
+quoteElem.addEventListener("click", displayRandomQuote);
