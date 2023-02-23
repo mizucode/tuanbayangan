@@ -4,7 +4,7 @@ const audio = musicPlayer.querySelector("audio");
 const playPauseBtn = musicPlayer.querySelector(".play-pause-btn");
 const stopBtn = musicPlayer.querySelector(".stop-btn");
 const volumeSlider = musicPlayer.querySelector(".volume-slider");
-const quotes = [
+let quotes = [
     "Hard work betrays none, but dreams betray many. - Hachiman Hikigaya,",
     "A person's past can't be changed. But their future is still up for grabs. - Sinon",
     "People's true abilities are hidden. You have to see through their outer shell to find them. - Ayanokouji",
