@@ -4,23 +4,26 @@ const audio = musicPlayer.querySelector("audio");
 const playPauseBtn = musicPlayer.querySelector(".play-pause-btn");
 const stopBtn = musicPlayer.querySelector(".stop-btn");
 const volumeSlider = musicPlayer.querySelector(".volume-slider");
-let quotes = [
+const quoteElem = document.getElementById("quote");
+let lastQuoteIndex;
+const quotes = [
     "Hard work betrays none, but dreams betray many. - Hachiman Hikigaya,",
     "A person's past can't be changed. But their future is still up for grabs. - Sinon",
     "People's true abilities are hidden. You have to see through their outer shell to find them. - Ayanokouji",
 ];
-const quoteElem = document.getElementById("quote");
-accordionHeaders.forEach((accordionHeader) => {
+
+function toggleAccordion(accordionHeader) {
+    accordionHeader.classList.toggle("active");
+    const accordionContent = accordionHeader.nextElementSibling;
+    accordionContent.style.display = accordionContent.style.display === "block" ? "none" : "block";
+}
+
+for (const accordionHeader of accordionHeaders) {
     accordionHeader.addEventListener("click", () => {
-        accordionHeader.classList.toggle("active");
-        const accordionContent = accordionHeader.nextElementSibling;
-        if (accordionContent.style.display === "block") {
-            accordionContent.style.display = "none";
-        } else {
-            accordionContent.style.display = "block";
-        }
+        toggleAccordion(accordionHeader);
     });
-});
+}
+
 playPauseBtn.addEventListener("click", () => {
     if (audio.paused) {
         audio.play();
@@ -30,6 +33,7 @@ playPauseBtn.addEventListener("click", () => {
         playPauseBtn.textContent = "Play";
     }
 });
+
 stopBtn.addEventListener("click", () => {
     audio.pause();
     audio.currentTime = 0;
@@ -39,13 +43,18 @@ stopBtn.addEventListener("click", () => {
 volumeSlider.addEventListener("input", () => {
     audio.volume = volumeSlider.value / 100;
 });
+
 function getRandomQuote() {
-    const randomIndex = Math.floor(Math.random() * quotes.length);
+    let randomIndex;
+    do {
+        randomIndex = Math.floor(Math.random() * quotes.length);
+    } while (randomIndex === lastQuoteIndex);
+    lastQuoteIndex = randomIndex;
     return quotes[randomIndex];
 }
+
 function displayRandomQuote() {
-    const randomQuote = getRandomQuote();
-    quoteElem.textContent = randomQuote;
+    quoteElem.textContent = getRandomQuote();
 }
 
 displayRandomQuote();
